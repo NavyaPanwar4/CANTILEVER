@@ -1,6 +1,6 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import ConfirmModal from "../components/ConfirmModal"; // ✅ Import modal
+import ConfirmModal from "./ConfirmModal"; // ✅ Import modal
 import "./Header.css";
 
 function Header() {
