@@ -1,70 +1,113 @@
-import { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
-import './CreateEdit.css';
+// src/pages/CreateEdit.jsx
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "./CreateEdit.css";
 
 function CreateEdit() {
-  const { id } = useParams(); 
-  const isEditing = !!id;
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    title: "",
+    summary: "",
+    cover: "",
+    content: "",
+  });
+  const [isEditMode, setIsEditMode] = useState(false);
+  const currentUser = JSON.parse(localStorage.getItem("user"));
 
-  const [title, setTitle] = useState('');
-  const [summary, setSummary] = useState('');
-  const [cover, setCover] = useState('');
-  const [content, setContent] = useState('');
-  
+  useEffect(() => {
+    if (id) {
+      setIsEditMode(true);
+      fetch(`http://localhost:5000/api/blogs/${id}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setFormData({
+            title: data.title,
+            summary: data.summary,
+            cover: data.cover,
+            content: data.content,
+          });
+        })
+        .catch(() => toast.error("Failed to load blog"));
+    }
+  }, [id]);
 
-  const handleSubmit = (e) => {
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!currentUser?.token) return toast.error("You must be logged in");
 
-    const post = {
-      title,
-      summary,
-      cover,
-      content,
-      createdAt: new Date().toISOString(),
-      author: 'Navya'
-    };
+    const method = isEditMode ? "PUT" : "POST";
+    const endpoint = isEditMode
+      ? `http://localhost:5000/api/blogs/${id}`
+      : "http://localhost:5000/api/blogs"; // 
 
-    if (isEditing) {
-      console.log('Updating Post:', post);
-    } else {
-      console.log('Creating New Post:', post);
+    try {
+      const res = await fetch(endpoint, {
+        method,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${currentUser.token}`,
+        },
+        body: JSON.stringify(formData), // 
+      });
+
+      if (res.ok) {
+        toast.success(isEditMode ? "Blog updated!" : "Blog published!");
+        navigate("/");
+      } else {
+        const error = await res.json();
+        toast.error(error.message || "Failed");
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Server error");
     }
   };
 
   return (
     <div className="create-edit-container">
-      <form className="create-edit-form" onSubmit={handleSubmit}>
-        <h2>{isEditing ? 'Edit Post' : 'Create New Post'}</h2>
+      <h2>{isEditMode ? "Edit Blog" : "Create New Blog"}</h2>
+      <form onSubmit={handleSubmit} className="create-edit-form">
         <input
           type="text"
-          placeholder="Blog Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          name="title"
+          placeholder="Title"
+          value={formData.title}
+          onChange={handleChange}
           required
         />
         <input
           type="text"
+          name="summary"
           placeholder="Summary"
-          value={summary}
-          onChange={(e) => setSummary(e.target.value)}
+          value={formData.summary}
+          onChange={handleChange}
           required
         />
         <input
           type="text"
-          placeholder="Cover Image URL"
-          value={cover}
-          onChange={(e) => setCover(e.target.value)}
+          name="cover"
+          placeholder="Image URL"
+          value={formData.cover}
+          onChange={handleChange}
           required
         />
         <textarea
-          placeholder="Blog Content"
-          rows={10}
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
+          name="content"
+          placeholder="Write your content here..."
+          value={formData.content}
+          onChange={handleChange}
+          rows="10"
           required
         />
-        <button type="submit">{isEditing ? 'Update Post' : 'Create Post'}</button>
+        <button type="submit">
+          {isEditMode ? "Update Blog" : "Publish Blog"}
+        </button>
       </form>
     </div>
   );

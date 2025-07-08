@@ -1,0 +1,23 @@
+.profile-page {
+  max-width: 800px;
+  margin: auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 10px;
+}
+
+.user-blog-list {
+  list-style: none;
+  padding: 0;
+}
+
+.user-blog-list li {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.user-blog-list li:hover {
+  background: #f9f9f9;
+}

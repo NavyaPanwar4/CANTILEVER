@@ -1,23 +1,30 @@
+// PostCard.jsx
+import React from "react";
 import { Link } from "react-router-dom";
 import "./PostCard.css";
 
-function PostCard({ post }) {
+const PostCard = ({ post }) => {
   return (
-    <div className="post-card">
-      <img src={post.cover} alt={post.title} />
-      <div className="content">
-        <h2>{post.title}</h2>
-        <p className="summary">{post.summary}</p>
-        <div className="meta">
-          <span>{post.author}</span>
-          <span>{new Date(post.createdAt).toLocaleDateString()}</span>
+    <div className="modern-post-card">
+      <Link to={`/post/${post._id}`} className="card-link">
+        <div className="card-image-container">
+          <img src={post.cover} alt={post.title} className="card-image" />
         </div>
-        <Link to={`/post/${post._id}`} className="read-more">
-          Read More →
-        </Link>
-      </div>
+        <div className="card-body">
+          <h3 className="card-title">{post.title}</h3>
+          <p className="card-meta">
+            ✍️ {post.author?.username} &nbsp; • &nbsp; 🗓️{" "}
+            {new Date(post.createdAt).toLocaleDateString("en-IN", {
+              day: "numeric",
+              month: "short",
+              year: "numeric",
+            })}
+          </p>
+          <p className="card-summary">{post.summary.slice(0, 100)}...</p>
+        </div>
+      </Link>
     </div>
   );
-}
+};
 
 export default PostCard;
