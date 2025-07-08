@@ -11,7 +11,6 @@ dotenv.config();
 
 const app = express();
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
@@ -20,12 +19,10 @@ app.use("/api/blogs", blogRoutes);
 app.use("/api/upload", uploadRoute);
 app.use("/uploads", express.static("uploads"));
 
-// Health check
 app.get("/", (req, res) => {
   res.send("API is running");
 });
 
-// Database connection
 const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URI;
 
@@ -42,5 +39,5 @@ mongoose
   })
   .catch((err) => {
     console.error("❌ MongoDB Error:", err);
-    process.exit(1); // Exit process on DB failure
+    process.exit(1);
   });
