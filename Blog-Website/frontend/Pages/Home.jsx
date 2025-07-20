@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import PostCard from "../components/PostCard";
 import "./Home.css";
 
+
 const Home = () => {
   const [posts, setPosts] = useState([]);
 
@@ -14,24 +15,41 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="home-container">
-      {/* Hero */}
-      <section className="hero-section">
+    <div className="home-page">
+      {/* Hero Section */}
+      <section className="hero">
         <div className="hero-content">
-          <h1>✨ Welcome to <span>BlogBrew</span></h1>
-          <p>Your space to explore, write, and inspire.</p>
-          <Link to="/create" className="cta-button">✍️ Start Writing</Link>
+          <h1>Welcome to <span className="brand-name">BlogBrew</span> 📝</h1>
+          <p>Where stories come to life. Share your thoughts, explore perspectives, and inspire the world.</p>
+          <Link to="/create" className="hero-btn">✍️ Start Writing</Link>
         </div>
       </section>
 
-      {/* Blog List */}
+      {/* Featured Section */}
+      {posts.length > 0 && (
+        <section className="featured-post">
+          <h2>🌟 Featured</h2>
+          <div className="featured-card">
+            <img src={posts[0].cover} alt="Featured" />
+            <div className="featured-content">
+              <h3>{posts[0].title}</h3>
+              <p>{posts[0].summary.slice(0, 120)}...</p>
+              <Link to={`/post/${posts[0]._id}`} className="read-more">Read More →</Link>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Latest Posts Section */}
       <section className="posts-section">
-        <h2 className="section-title">📚 Latest Posts</h2>
+        <h2>📝 Latest Posts</h2>
         <div className="posts-grid">
-          {posts.length > 0 ? (
-            posts.map((post) => <PostCard key={post._id} post={post} />)
+          {posts.length > 1 ? (
+            posts.slice(1).map((post) => (
+              <PostCard key={post._id} post={post} />
+            ))
           ) : (
-            <p>No posts available.</p>
+            <p>No more posts available.</p>
           )}
         </div>
       </section>

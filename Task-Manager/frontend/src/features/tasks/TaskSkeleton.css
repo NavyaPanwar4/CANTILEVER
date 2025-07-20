@@ -1,0 +1,58 @@
+.task-skeleton {
+  display: flex;
+  padding: 16px;
+  background-color: var(--background-paper);
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.skeleton-checkbox {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--divider);
+  margin-right: 16px;
+  margin-top: 4px;
+}
+
+.skeleton-content {
+  flex-grow: 1;
+}
+
+.skeleton-title {
+  width: 60%;
+  height: 20px;
+  background-color: var(--divider);
+  margin-bottom: 8px;
+  border-radius: 4px;
+}
+
+.skeleton-description {
+  width: 80%;
+  height: 16px;
+  background-color: var(--divider);
+  margin-bottom: 12px;
+  border-radius: 4px;
+}
+
+.skeleton-meta {
+  display: flex;
+  gap: 8px;
+}
+
+.skeleton-chip {
+  width: 80px;
+  height: 24px;
+  background-color: var(--divider);
+  border-radius: 16px;
+}
+
+/* Animation */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.task-skeleton div {
+  animation: pulse 1.5s ease-in-out infinite;
+}   

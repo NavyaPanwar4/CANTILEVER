@@ -1,0 +1,176 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background-color: var(--primary-color);
+  color: white;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+}
+
+[data-theme="dark"] .navbar {
+  background-color: var(--primary-dark);
+}
+
+.navbar-content {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.menu-button {
+  background: none;
+  border: none;
+  color: white;
+  margin-right: 16px;
+  cursor: pointer;
+}
+
+.app-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-right: auto;
+  text-decoration: none;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.notifications {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--secondary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: default;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.nav-link {
+  padding: 6px 12px;
+  text-decoration: none;
+  color: white;
+  border: 1px solid white;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  background-color: transparent;
+}
+
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.logout-btn {
+  padding: 6px 10px;
+  background: #e53935;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.logout-btn:hover {
+  background: #c62828;
+}
+
+.logout-confirm-content {
+  padding: 1.5rem 1.2rem;
+  text-align: center;
+  max-width: 300px;
+  background-color: var(--modal-bg, #fff);
+  border-radius: 8px;
+}
+
+.logout-confirm-content h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: #222;
+}
+
+.logout-confirm-content p {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 1.2rem;
+}
+
+.logout-confirm-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+/* Buttons */
+.btn {
+  font-size: 0.85rem;
+  padding: 0.4rem 1rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Cancel (text button) */
+.btn-text {
+  background: none;
+  color: #1976d2;
+}
+
+.btn-text:hover {
+  background-color: #e3f2fd;
+}
+
+/* Confirm (contained button) */
+.btn-contained {
+  background-color: #1976d2;
+  color: #fff;
+}
+
+.btn-contained:hover {
+  background-color: #1565c0;
+}
+
+/* Danger style for logout */
+.btn-danger {
+  background-color: #f44336;
+}
+
+.btn-danger:hover {
+  background-color: #d32f2f;
+}

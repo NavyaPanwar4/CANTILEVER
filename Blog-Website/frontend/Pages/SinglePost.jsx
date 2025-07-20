@@ -18,7 +18,6 @@ const SinglePost = () => {
         const data = await res.json();
         setPost(data);
       } catch (err) {
-        console.error("Error fetching blog:", err);
         toast.error("Failed to load blog");
       }
     };
@@ -53,7 +52,6 @@ const SinglePost = () => {
       }
     } catch (err) {
       toast.error("Server error");
-      console.error("Delete error:", err);
     } finally {
       setShowDeleteModal(false);
     }
@@ -63,15 +61,17 @@ const SinglePost = () => {
     setShowDeleteModal(false);
   };
 
-  if (!post) return <p>Loading post...</p>;
+  if (!post) return <p className="loading-text">Loading post...</p>;
 
   return (
-    <div className="single-post-container">
-      <h2>{post.title}</h2>
-      <p><strong>Author:</strong> {post.author?.username}</p>
-      <img src={post.cover} alt="Cover" className="post-cover" />
+    <div className="single-post-wrapper animate-fade-in">
+      <h2 className="post-title">{post.title}</h2>
+      <p className="post-meta">
+        <strong>Author:</strong> {post.author?.username}
+      </p>
+      <img src={post.cover} alt="cover" className="post-image" />
       <p className="post-summary">{post.summary}</p>
-      <p className="post-content">{post.content}</p>
+      <div className="post-content">{post.content}</div>
 
       {isAuthorOrAdmin && (
         <div className="post-actions">
@@ -92,3 +92,4 @@ const SinglePost = () => {
 };
 
 export default SinglePost;
+  

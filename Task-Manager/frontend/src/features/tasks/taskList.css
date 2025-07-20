@@ -1,0 +1,21 @@
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.empty-state .material-icons {
+  font-size: 48px;
+  margin-bottom: 16px;
+  color: var(--text-disabled);
+}

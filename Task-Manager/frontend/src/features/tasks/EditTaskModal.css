@@ -1,0 +1,151 @@
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.task-modal {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.task-modal h2 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.task-modal label {
+  display: block;
+  margin-top: 15px;
+  font-weight: 500;
+  color: #333;
+}
+
+.task-modal input[type="text"],
+.task-modal input[type="date"],
+.task-modal select,
+.task-modal textarea {
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  background-color: #f9fafb;
+  color: #111827;
+  margin-top: 5px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.task-modal textarea {
+  resize: vertical;
+}
+
+.labels {
+  margin-top: 15px;
+}
+
+.label-tag {
+  display: inline-flex;
+  align-items: center;
+  background-color: #f3f4f6;
+  color: #333;
+  border-radius: 16px;
+  padding: 0.3rem 0.6rem;
+  margin: 4px;
+  font-size: 0.85rem;
+}
+
+.label-tag button {
+  background: transparent;
+  border: none;
+  margin-left: 6px;
+  font-size: 1rem;
+  color: #aaa;
+  cursor: pointer;
+}
+
+.labels input {
+  width: calc(100% - 50px);
+  display: inline-block;
+  margin-top: 8px;
+}
+
+.labels button {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+
+.form-actions button {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.form-actions button[type="submit"] {
+  background-color: #4f46e5;
+  color: white;
+}
+
+.form-actions button[type="button"] {
+  background: transparent;
+  color: #555;
+}
+
+.task-modal input[type="text"]:focus,
+.task-modal input[type="date"]:focus,
+.task-modal select:focus,
+.task-modal textarea:focus {
+  border-color: #4f46e5;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+.edit-form input[type="text"]:focus {
+  border-color: #4f46e5;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+.task-modal textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.edit-form textarea:focus {
+  border-color: #4f46e5;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}

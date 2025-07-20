@@ -23,7 +23,7 @@
 
 .create-edit-form button {
   padding: 0.8rem 1.5rem;
-  background-color: #1e88e5;
+  background-color: #ba42d8;
   color: white;
   font-size: 1rem;
   border: none;
@@ -33,7 +33,7 @@
 }
 
 .create-edit-form button:hover {
-  background-color: #1565c0;
+  background-color: #b030eb;
 }
 
 .create-edit-container {
@@ -78,3 +78,4 @@
     transform: translateY(0);
   }
 }
+
